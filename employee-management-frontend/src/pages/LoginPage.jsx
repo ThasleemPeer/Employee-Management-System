@@ -6,12 +6,14 @@ function LoginPage() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
+  const [successMessage, setSuccessMessage] = useState('');
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setError('');
+    setSuccessMessage('');
     setIsLoading(true);
 
     if (!email || !password) {
@@ -29,8 +31,10 @@ function LoginPage() {
       const { user_type, name, tasks } = response.data;
 
       if (user_type === 'admin') {
+        setSuccessMessage('Login successful!');
         navigate('/admin-dashboard', { state: { name, tasks } });
       } else if (user_type === 'employee') {
+        setSuccessMessage('Login successful!');
         navigate('/employee-dashboard', { state: { name, tasks } });
       } else {
         setError('Unknown user type.');
@@ -72,9 +76,26 @@ function LoginPage() {
             {isLoading ? 'Logging in...' : 'Log in'}
           </button>
 
-          {error && <p className="text-red-500 text-center">{error}</p>}
+          {error && (
+            <p className="text-red-500 text-center">{error}</p>
+          )}
+          {successMessage && (
+            <p className="text-green-500 text-center">{successMessage}</p>
+          )}
         </form>
       </div>
+
+      {/* Floating Message for Login */}
+      {error && (
+        <div className="fixed top-5 left-1/2 transform -translate-x-1/2 bg-red-500 text-white px-4 py-2 rounded shadow-lg z-50">
+          {error}
+        </div>
+      )}
+      {successMessage && (
+        <div className="fixed top-5 left-1/2 transform -translate-x-1/2 bg-green-500 text-white px-4 py-2 rounded shadow-lg z-50">
+          {successMessage}
+        </div>
+      )}
     </div>
   );
 }
