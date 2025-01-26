@@ -1,6 +1,4 @@
-<<<<<<< HEAD
-# Employee_management_system_
-=======
+
 # Employee Management System
 
 The **Employee Management System** is a web-based application designed to manage the employees of an organization. It allows users to perform CRUD (Create, Read, Update, Delete) operations on employee records, track their roles, salaries, and other personal details. This project is built using React for the frontend, Django for the backend, and MySQL for the database.
