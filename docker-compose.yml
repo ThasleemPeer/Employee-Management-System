@@ -1,0 +1,38 @@
+version: '3.8'
+
+services:
+  backend:
+    build: ./employee_management_system_backend
+    ports:
+      - "8000:8000"
+    depends_on:
+      - db
+    environment:
+      - DATABASE_URL=mysql://root:Peer%40361@db:3306/emp_m_s
+    volumes:
+      - ./employee_management_system_backend:/employee_manager
+
+  frontend:
+    build: ./employee-management-frontend
+    ports:
+      - "5173:5173"
+    depends_on:
+      - backend
+    volumes:
+      - ./employee-management-frontend:/app
+    environment:
+      - VITE_API_URL=http://localhost:8000
+
+  db:
+    image: mysql:8.0
+    restart: always
+    environment:
+      MYSQL_DATABASE: emp_m_s
+      MYSQL_ROOT_PASSWORD: Peer@361
+    ports:
+      - "3307:3306"
+    volumes:
+      - db_data:/var/lib/mysql
+
+volumes:
+  db_data:

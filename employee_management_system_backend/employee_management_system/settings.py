@@ -120,7 +120,7 @@ DATABASES = {
         'NAME': 'emp_m_s',          # Your DB name
         'USER': 'root',          # Your DB username
         'PASSWORD': 'Peer@361',  # Your DB password
-        'HOST': 'localhost',                   # Use 'localhost' if it's local or your DB host
+        'HOST': 'db',                   # Use 'localhost' if it's local or your DB host
         'PORT': '3306',                        # Default MySQL port
     }
 }
